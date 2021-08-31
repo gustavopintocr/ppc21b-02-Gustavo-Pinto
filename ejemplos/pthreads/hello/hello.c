@@ -1,5 +1,6 @@
 //Copyright 2021 Jeisson Hidalgo <jeisson.hidalgo@ucr.ac.cr> CC -BY 4.0
 
+#include <errno.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +16,7 @@ int main(void) {
     if(error == EXIT_SUCCESS){
         // print('Hello from main thread')
         printf("Hello from main thread\n");
+        pthread_join(thread, /*value ptr*/NULL);
     }else{
         fprintf(stderr, "Error: could no create secondary thread\n");
     }
