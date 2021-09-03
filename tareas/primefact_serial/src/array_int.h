@@ -1,5 +1,5 @@
 /*
- * Ⓒ 2021 Gustavo Pinto Some Rights Reserved
+ * Copyright 2021 Gustavo Pinto 
  */
 
 #ifndef ARRAY_INT_H
@@ -7,7 +7,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-typedef struct sub_array{
+typedef struct sub_array {
   size_t capacity;
   size_t counter;
   int64_t number;
