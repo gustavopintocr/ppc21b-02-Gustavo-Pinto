@@ -9,6 +9,9 @@
 #include <math.h>
 #include "array_int.h"
 
+/**
+ @brief Lee un archivo, factoriza su contenido y lo imprime
+*/
 int main(void) {
   array_int_t array;
   start_array(&array);

@@ -10,10 +10,14 @@
 #include <inttypes.h>
 #include <math.h>
 
-void destroy_subarray(array_int_t* array);
-int increase_capacity(array_int_t* array);
-int increase_subarray(sub_array_t* array);
-
+/**
+ @brief  Método encargado de añadir un elemento a un arreglo de elementos.
+ @param  array Arreglo de elementos tipo int.
+ @param  number Numero int de 64bits Elemento que se va a añadir.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+*/
 int add_element(array_int_t* array, int64_t number) {
   assert(array);
   if (array->counter == array->capacity) {
@@ -26,6 +30,15 @@ int add_element(array_int_t* array, int64_t number) {
   return EXIT_SUCCESS;
 }
 
+/**
+ @brief  Método encargado de añadir a un subarreglo la factorización prima.
+ @param  array Subarreglo de elementos.
+ @param  base Base del numero que se va a añadir.
+ @param  exponent Exponente del numero que se va a añadir.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+*/
 int add_subarray(sub_array_t* array, int64_t base, int64_t exponent) {
   assert(array);
   if (array->counter == array->capacity) {
@@ -38,6 +51,10 @@ int add_subarray(sub_array_t* array, int64_t base, int64_t exponent) {
   return EXIT_SUCCESS;
 }
 
+/**
+ @brief  Método encargado de eliminar arreglos.
+ @param  array Arreglo de elementos que se va a eliminar.
+*/
 void destroy_array(array_int_t* array) {
   assert(array);
   destroy_subarray(array);
@@ -46,6 +63,10 @@ void destroy_array(array_int_t* array) {
   free(array->elements);
 }
 
+/**
+ @brief  Método encargado de eliminar subarreglos.
+ @param  array Subrreglo de elementos que se va a eliminar.
+*/
 void destroy_subarray(array_int_t* array) {
   for (size_t i = 0; i < array->counter; i++) {
     array->elements[i].counter = 0;
@@ -55,6 +76,13 @@ void destroy_subarray(array_int_t* array) {
   }
 }
 
+/**
+ @brief  Método encargado de incrementar el tamaño del arreglo en 1.
+ @param  array Arreglo de elementos tipo int que se va a incrementar.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+*/
 int increase_capacity(array_int_t* array) {
   size_t new_capacity = array->capacity + 1;
   sub_array_t* new_elements = (sub_array_t*)
@@ -68,6 +96,13 @@ int increase_capacity(array_int_t* array) {
   }
 }
 
+/**
+ @brief  Método encargado de incrementar el tamaño de un subarreglo en 1.
+ @param  array Subarreglo de elementos tipo int que se va a incrementar.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+*/
 int increase_subarray(sub_array_t* array) {
   size_t new_capacity = array->capacity + 1;
   int64_t* new_bases = (int64_t*)
@@ -84,6 +119,10 @@ int increase_subarray(sub_array_t* array) {
   }
 }
 
+/**
+ @brief  Método encargado de factorizar el arreglo.
+ @param  array Arreglo de elementos que se va a imprimir.
+*/
 void factorize(array_int_t* array) {
   for (size_t i = 0; i < array->counter; i++) {
     int64_t num = array->elements[i].number;
@@ -108,6 +147,10 @@ void factorize(array_int_t* array) {
   }
 }
 
+/**
+ @brief  Método encargado de imprimir el arreglo.
+ @param  array Arreglo de elementos que se va a imprimir.
+*/
 void print(array_int_t* array) {
   for (size_t i = 0; i < array->counter; i++) {
     if (array->elements[i].number == 1 || array->elements[i].number == 0) {
@@ -142,6 +185,10 @@ void print(array_int_t* array) {
   }
 }
 
+/**
+ @brief  Método encargado de iniciar un arreglo.
+ @param  array Arreglo de elementos que se va a iniciar.
+*/
 void start_array(array_int_t* array) {
   assert(array);
   array->capacity = 0;
@@ -149,6 +196,10 @@ void start_array(array_int_t* array) {
   array->elements = NULL;
 }
 
+/**
+ @brief  Método encargado de iniciar un subarreglo.
+ @param  array Subrreglo de elementos que se va a iniciar.
+*/
 void start_subarray(sub_array_t* array) {
   assert(array);
   array->number = 0;
@@ -157,3 +208,7 @@ void start_subarray(sub_array_t* array) {
   array->bases = NULL;
   array->exponents = NULL;
 }
+
+void destroy_subarray(array_int_t* array);
+int increase_capacity(array_int_t* array);
+int increase_subarray(sub_array_t* array);
