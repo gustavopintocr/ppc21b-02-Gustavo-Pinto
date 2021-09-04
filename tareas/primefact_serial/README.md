@@ -17,7 +17,7 @@ Además existen condiciones especiales para el número 1 y  los números negativ
 -  **-2:** invalid number
 
 
-##Ejecución del programa
+## Ejecución del programa
 
 ### Construcción
 Para construir el programa:
@@ -42,7 +42,7 @@ Esta prueba no requiere de la construcción del programa
 
 `make test`
 
-##Créditos
+## Créditos
 
 Copyright 2021 Gustavo Pinto - Universidad de Costa Rica
 
