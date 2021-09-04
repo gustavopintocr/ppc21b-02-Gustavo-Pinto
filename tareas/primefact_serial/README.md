@@ -44,5 +44,5 @@ Esta prueba no requiere de la construcción del programa
 
 ## Créditos
 
-Copyright 2021 Gustavo Pinto - Universidad de Costa Rica
+2021 Gustavo Pinto - Universidad de Costa Rica
 
