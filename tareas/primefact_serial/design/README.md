@@ -1,14 +1,14 @@
-#Diseño
+# Diseño
 
-##Diagrama de clases
+## Diagrama de clases
 ![Diagrama UML](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_serial/design/primefact_serial.png?raw=true "Diagrama UML")
 
-##Distribución
+## Distribución
 - **Arreglo de enteros:** Esta clase consiste en dos estructuras basicas, las cuales son:
 `Struct array_int_t`
 `Struct sub_array_t`
 
-- **Struct array_int_t: **Consiste en un arreglo de enteros, con varios atributos como:
+- **Struct array_int_t:** Consiste en un arreglo de enteros, con varios atributos como:
 `La capacidad del arreglo`
 `Un contador para los elementos del arreglo`
 `Un subarrreglo que contiene un numero y su factorización serial`
