@@ -8,7 +8,7 @@
 	  Struct array_int_t
 	  Struct sub_array_t
 
-- **Struct array_int_t: **Consiste en un arreglo de enteros, con varios atributos como:
+- **Struct array_int_t:** Consiste en un arreglo de enteros, con varios atributos como:
 	  La capacidad del arreglo
 	  Un contador para los elementos del arreglo
 	  Un subarrreglo que contiene un numero y su factorización serial
