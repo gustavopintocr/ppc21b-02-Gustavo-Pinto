@@ -18,16 +18,24 @@
    0 si lo logró.
    1 si falló.
 */
-int add_element(array_int_t* array, int64_t number) {
+int add_element(array_int_t* array, int64_t number, bool isLetter) {
   assert(array);
   if (array->counter == array->capacity) {
     if (increase_capacity(array) != EXIT_SUCCESS) {
       return EXIT_FAILURE;
     }
   }
-  start_subarray(&(array->elements[array->counter++]));
-  array->elements[array->counter-1].number = number;
-  return EXIT_SUCCESS;
+  if (!isLetter) {
+    start_subarray(&(array->elements[array->counter++]));
+    array->elements[array->counter-1].number = number;
+    array->elements[array->counter-1].letter = false;
+    return EXIT_SUCCESS;
+  }else{
+    start_subarray(&(array->elements[array->counter++]));
+    array->elements[array->counter-1].number = 0;
+    array->elements[array->counter-1].letter = true;
+    return EXIT_SUCCESS;
+  }
 }
 
 /**
@@ -120,62 +128,65 @@ int increase_subarray(sub_array_t* array) {
 }
 
 /**
- @brief  Método encargado de factorizar el arreglo.
+ @brief  Método encargado de factorizar el arreglo, recorriendo todos los elementos y creando un subarreglo
+ con la factorizacion correspondiente.
  @param  array Arreglo de elementos que se va a imprimir.
 */
-void factorize(array_int_t* array) {
-  for (size_t i = 0; i < array->counter; i++) {
-    int64_t num = array->elements[i].number;
-    if (num > 1 && num < (pow(2, 63)-1)) {
+void factorize(array_int_t* vector) {
+  for (size_t i = 0; i < vector->counter; i++) {
+    int64_t num = vector->elements[i].number;
+    if (num > 1 && num <= INT64_MAX && !(vector->elements[i].letter)) {
       for (int64_t base = 2; num > 1; base++) {
-        int64_t counter = 0;
+        int64_t contador = 0;
         while (num%base == 0) {
-          counter++;
+          contador++;
           num /= base;
           if (num%base != 0) {
-            if (counter > 1) {
-              add_subarray(&(array->elements[i]), base, counter);
+            if (contador > 1) {
+              add_subarray(&(vector->elements[i]), base, contador);
             } else if (num >= 1) {
-              add_subarray(&(array->elements[i]), base, 1);
+              add_subarray(&(vector->elements[i]), base, 1);
             }
           }
         }
       }
-    } else if (num != 1 && num != 0) {
-      add_subarray(&(array->elements[i]), 1, 1);
+    } else if (num != 1 && num != 0 && !(vector->elements[i].letter)) {
+      add_subarray(&(vector->elements[i]), 1, 1);
     }
   }
 }
 
 /**
- @brief  Método encargado de imprimir el arreglo.
+ @brief  Método encargado de imprimir el arreglo, con 4 condiciones importantes:
+ que sea una letra -> Invalid number
+ que el numero sea 0 0 1 -> NA
+ que el numero sea menor que 0 -> Invalid number
+ y el caso en el que haya que imprimir la factorizacion -> 9: 3^2
  @param  array Arreglo de elementos que se va a imprimir.
 */
 void print(array_int_t* array) {
-  for (size_t i = 0; i < array->counter; i++) {
-    if (array->elements[i].number == 1 || array->elements[i].number == 0) {
-      printf("%"PRId64": NA\n", array->elements[i].number);
-    } else if (array->elements[i].bases[0] == 1) {
-      if (array->elements[i].number == -930587 ||
-      !(array->elements[i].number < (pow(2, 63)-1))) {
+for (size_t i = 0; i < array->counter; i++) {
+    if (array->elements[i].letter) {
         printf("invalid number\n");
-      } else {
+    } else if (array->elements[i].number == 1
+      || array->elements[i].number == 0) {
+      printf("%"PRId64": NA\n", array->elements[i].number);
+    } else if (array->elements[i].number < 0) {
         printf("%"PRId64": invalid number\n", array->elements[i].number);
-      }
     } else {
       printf("%"PRId64": ", array->elements[i].number);
       for (size_t j = 0; j < array->elements[i].counter; j++) {
         if (j == array->elements[i].counter-1) {
           if (array->elements[i].exponents[j] > 1) {
-            printf("%"PRId64"^""%"PRId64"\n", array->elements[i].bases[j],
-            array->elements[i].exponents[j]);
+            printf("%"PRId64"^""%"PRId64"\n", array->elements[i].bases[j]
+            , array->elements[i].exponents[j]);
           } else {
             printf("%"PRId64"\n", array->elements[i].bases[j]);
           }
         } else {
             if (array->elements[i].exponents[j] > 1) {
-            printf("%"PRId64"^""%"PRId64" ", array->elements[i].bases[j],
-            array->elements[i].exponents[j]);
+            printf("%"PRId64"^""%"PRId64" ", array->elements[i].bases[j]
+            , array->elements[i].exponents[j]);
           } else {
             printf("%"PRId64" ", array->elements[i].bases[j]);
           }

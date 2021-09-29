@@ -6,6 +6,8 @@
 #define ARRAY_INT_H
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
+
 
 typedef struct sub_array {
   size_t capacity;
@@ -13,6 +15,7 @@ typedef struct sub_array {
   int64_t number;
   int64_t* bases;
   int64_t* exponents;
+  bool letter;
 }sub_array_t;
 
 typedef struct {
@@ -21,7 +24,7 @@ typedef struct {
   sub_array_t* elements;
 } array_int_t;
 
-int add_element(array_int_t* array, int64_t number);
+int add_element(array_int_t* array, int64_t number, bool isLetter);
 int add_subarray(sub_array_t* a, int64_t base, int64_t expo);
 void destroy_array(array_int_t* array);
 void destroy_subarray(array_int_t* array);
