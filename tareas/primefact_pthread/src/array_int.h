@@ -28,7 +28,7 @@ int add_element(array_int_t* array, int64_t number, bool isLetter);
 int add_subarray(sub_array_t* a, int64_t base, int64_t expo);
 void destroy_array(array_int_t* array);
 void destroy_subarray(array_int_t* array);
-void factorize(array_int_t* array);
+void factorize(array_int_t* array, int64_t position);
 int increase_capacity(array_int_t* array);
 int increase_subarray(sub_array_t* array);
 void start_array(array_int_t* array);

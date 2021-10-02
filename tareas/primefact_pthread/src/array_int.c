@@ -132,28 +132,29 @@ int increase_subarray(sub_array_t* array) {
  con la factorizacion correspondiente.
  @param  array Arreglo de elementos que se va a imprimir.
 */
-void factorize(array_int_t* vector) {
-  for (size_t i = 0; i < vector->counter; i++) {
-    int64_t num = vector->elements[i].number;
-    if (num > 1 && num <= INT64_MAX && !(vector->elements[i].letter)) {
-      for (int64_t base = 2; num > 1; base++) {
-        int64_t contador = 0;
-        while (num%base == 0) {
-          contador++;
-          num /= base;
-          if (num%base != 0) {
-            if (contador > 1) {
-              add_subarray(&(vector->elements[i]), base, contador);
-            } else if (num >= 1) {
-              add_subarray(&(vector->elements[i]), base, 1);
-            }
+void factorize(array_int_t* vector, int64_t position) {
+  
+  int64_t num = 0;
+  num = vector->elements[position].number;
+  if (num > 1 && num <= INT64_MAX &&
+  !(vector->elements[position].letter)) {
+    for (int64_t base = 2; num > 1; base++) {
+      int64_t counter = 0;
+      while (num%base == 0) {
+        counter++;
+        num /= base;
+        if (num%base != 0) {
+          if (counter > 1) {
+            add_subarray(&(vector->elements[position]), base,
+            counter);
+          } else if (num >= 1) {
+            add_subarray(&(vector->elements[position]), base, 1);
           }
         }
       }
-    } else if (num != 1 && num != 0 && !(vector->elements[i].letter)) {
-      add_subarray(&(vector->elements[i]), 1, 1);
     }
   }
+
 }
 
 /**
@@ -165,7 +166,7 @@ void factorize(array_int_t* vector) {
  @param  array Arreglo de elementos que se va a imprimir.
 */
 void print(array_int_t* array) {
-for (size_t i = 0; i < array->counter; i++) {
+  for (size_t i = 0; i < array->counter; i++) {
     if (array->elements[i].letter) {
         printf("invalid number\n");
     } else if (array->elements[i].number == 1
