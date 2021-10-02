@@ -14,7 +14,10 @@
 #include "factorizer.h"
 
 /**
- @brief Lee un archivo, factoriza su contenido y lo imprime
+ @brief Metodo Main. Lee un archivo, factoriza su contenido y lo imprime
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló o presentó problemas.
 */
 int main(int argc, char* argv[]) {
   int error = EXIT_SUCCESS;
@@ -30,7 +33,7 @@ int main(int argc, char* argv[]) {
   start_array(&array);
   int64_t number;
   char* error_char = malloc(100);
-  while (fgets(error_char, 100, stdin) ){
+  while ( fgets(error_char, 100, stdin ) ) {
     if (sscanf(error_char, "%"SCNd64, &number) && !errno) {
       add_element(&array, number, false);
        errno = 0;

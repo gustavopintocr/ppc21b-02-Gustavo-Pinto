@@ -31,7 +31,7 @@ int add_element(array_int_t* array, int64_t number, bool isLetter) {
     array->elements[array->counter-1].number = number;
     array->elements[array->counter-1].letter = false;
     return EXIT_SUCCESS;
-  }else{
+  } else {
     start_subarray(&(array->elements[array->counter++]));
     array->elements[array->counter-1].number = 0;
     array->elements[array->counter-1].letter = true;

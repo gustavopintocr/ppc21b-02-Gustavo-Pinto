@@ -8,6 +8,7 @@
 #include <inttypes.h>
 #include <pthread.h>
 #include <unistd.h>
+#include "factorizer.h"
 #include "array_int.h"
 #include "pthread_routine.h"
 
