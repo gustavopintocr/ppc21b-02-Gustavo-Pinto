@@ -24,7 +24,6 @@ typedef struct private {
   shared_data_t* shared_data;
 } private_data_t;
 
-void* routine_factorize(void* data);
 int create_threads(shared_data_t* shared_data);
 
 #endif

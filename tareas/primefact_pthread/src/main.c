@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include "array_int.h"
 #include "pthread_routine.h"
+#include "factorizer.h"
 
 /**
  @brief Lee un archivo, factoriza su contenido y lo imprime

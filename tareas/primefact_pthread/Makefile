@@ -4,10 +4,10 @@
 CC=cc
 XC=g++
 DEFS=
-FLAGS=$(strip -Wall -Wextra $(DEFS))
+FLAGS=$(strip -Wall -Wextra -pthread $(DEFS))
 FLAGC=$(FLAGS) -std=gnu11
 FLAGX=$(FLAGS) -std=gnu++11
-LIBS=
+LIBS= -pthread
 LINTF=-build/header_guard,-build/include_subdir
 LINTC=$(LINTF),-readability/casting
 LINTX=$(LINTF),-build/c++11,-runtime/references

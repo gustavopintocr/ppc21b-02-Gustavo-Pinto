@@ -10,8 +10,16 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "array_int.h"
+#include "factorizer.h"
 
 
+/**
+ @brief  Método encargado de crear los hilos de concurrencia.
+ @param  share_data_t Pointer a typedef struct.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+*/
 int create_threads(shared_data_t* shared_data) {
   int error = EXIT_SUCCESS;
 
@@ -46,25 +54,3 @@ int create_threads(shared_data_t* shared_data) {
   return error;
 }
 
-
-void* routine_factorize(void* data) {
-  private_data_t* private_data = (private_data_t*) data;
-  shared_data_t* shared_data = private_data->shared_data;
-  int64_t my_position = 0;
-  array_int_t arrayTemp = shared_data->array;
-  while (true) {
-    pthread_mutex_lock(&shared_data->can_access_next_position);
-      my_position = shared_data->position;
-      shared_data->position++;
-      if ((size_t)shared_data->position > arrayTemp.counter) {
-        pthread_mutex_unlock(&shared_data->can_access_next_position);
-        break;
-      }
-    pthread_mutex_unlock(&shared_data->can_access_next_position);
-
-    factorize(&arrayTemp, my_position);
-  }
-  return NULL;
-}
-
-void* routine_factorize(void* data);

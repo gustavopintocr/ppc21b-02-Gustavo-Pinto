@@ -2,13 +2,14 @@
  * Copyright 2021 Gustavo Pinto 
  */
 
-#include "array_int.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>
 #include <math.h>
+#include "array_int.h"
+#include "factorizer.h"
 
 /**
  @brief  Método encargado de añadir un elemento a un arreglo de elementos.
@@ -127,35 +128,7 @@ int increase_subarray(sub_array_t* array) {
   }
 }
 
-/**
- @brief  Método encargado de factorizar el arreglo, recorriendo todos los elementos y creando un subarreglo
- con la factorizacion correspondiente.
- @param  array Arreglo de elementos que se va a imprimir.
-*/
-void factorize(array_int_t* vector, int64_t position) {
-  
-  int64_t num = 0;
-  num = vector->elements[position].number;
-  if (num > 1 && num <= INT64_MAX &&
-  !(vector->elements[position].letter)) {
-    for (int64_t base = 2; num > 1; base++) {
-      int64_t counter = 0;
-      while (num%base == 0) {
-        counter++;
-        num /= base;
-        if (num%base != 0) {
-          if (counter > 1) {
-            add_subarray(&(vector->elements[position]), base,
-            counter);
-          } else if (num >= 1) {
-            add_subarray(&(vector->elements[position]), base, 1);
-          }
-        }
-      }
-    }
-  }
 
-}
 
 /**
  @brief  Método encargado de imprimir el arreglo, con 4 condiciones importantes:
