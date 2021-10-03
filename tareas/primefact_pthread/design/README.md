@@ -1,7 +1,7 @@
 # Diseño
 
 ## Diagrama de clases
-![Diagrama UML](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_serial/design/primefact_serial.png?raw=true "Diagrama UML")
+![Diagrama UML](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_pthread/design/pthread_routine.jpg)
 
 ## Distribución
 - **Arreglo de enteros:** Esta clase consiste en dos estructuras basicas, las cuales son:
@@ -27,3 +27,27 @@
 
 
 > > Esta clase cuenta con métodos esenciales para  iniciar, destruir, añadir elementos, aumentar la capacidad, factorizar los números e imprimimirlos.
+
+- **Rutina de hilos de concurrencia:** Esta clase consiste en dos estructuras basicas, las cuales son:
+
+      Struct shared_data_t
+      Struct private_data_t
+
+
+- **Struct shared_data_t:** Consiste en una estructura, con varios atributos como:
+      
+      Un contador
+      Una posicion
+      Un arreglo de enteros
+      Un mutex para acceder a la siguiente posicion
+
+
+- **Struct private_data_t** Esta es una estructura, con un solo atributo:
+
+      Un puntero de tipo shared_data_t
+
+> > Esta clase cuenta con unico metodo que crea los hilos de concurrencia.
+
+- **Factorizador:**
+
+> > Esta clase cuenta con dos metodos para factorizar.
