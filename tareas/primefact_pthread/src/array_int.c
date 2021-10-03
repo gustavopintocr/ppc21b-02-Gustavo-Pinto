@@ -15,6 +15,7 @@
  @brief  Método encargado de añadir un elemento a un arreglo de elementos.
  @param  array Arreglo de elementos tipo int.
  @param  number Numero int de 64bits Elemento que se va a añadir.
+ @param  isLetter Bool que determina si el elemento es un entero.
  @return Un código de error:
    0 si lo logró.
    1 si falló.

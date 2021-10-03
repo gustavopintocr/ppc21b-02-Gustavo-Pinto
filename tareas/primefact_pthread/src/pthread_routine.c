@@ -15,7 +15,7 @@
 
 /**
  @brief  Método encargado de crear los hilos de concurrencia.
- @param  share_data_t Pointer a typedef struct.
+ @param  shared_data Pointer a typedef struct.
  @return Un código de error:
    0 si lo logró.
    1 si falló.

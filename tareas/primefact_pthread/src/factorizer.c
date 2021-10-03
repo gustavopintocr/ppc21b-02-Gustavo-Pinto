@@ -16,13 +16,14 @@
 /**
  @brief  Método encargado de factorizar el arreglo, recorriendo todos los elementos y creando un subarreglo
  con la factorizacion correspondiente.
- @param  array Arreglo de elementos que se va a imprimir.
+ @param  array Arreglo de elementos que se va a factorizar.
+ @param  position Int que determina la posicion del elemento.
 */
-void factorize(array_int_t* vector, int64_t position) {
+void factorize(array_int_t* array, int64_t position) {
   int64_t num = 0;
-  num = vector->elements[position].number;
+  num = array->elements[position].number;
   if (num > 1 && num <= INT64_MAX &&
-  !(vector->elements[position].letter)) {
+  !(array->elements[position].letter)) {
     for (int64_t base = 2; num > 1; base++) {
       int64_t counter = 0;
       while (num%base == 0) {
@@ -30,10 +31,10 @@ void factorize(array_int_t* vector, int64_t position) {
         num /= base;
         if (num%base != 0) {
           if (counter > 1) {
-            add_subarray(&(vector->elements[position]), base,
+            add_subarray(&(array->elements[position]), base,
             counter);
           } else if (num >= 1) {
-            add_subarray(&(vector->elements[position]), base, 1);
+            add_subarray(&(array->elements[position]), base, 1);
           }
         }
       }
@@ -43,7 +44,7 @@ void factorize(array_int_t* vector, int64_t position) {
 
 /**
  @brief  Método encargado de eliminar subarreglos.
- @param  array Subrreglo de elementos que se va a eliminar.
+ @param  data Data.
 */
 void* routine_factorize(void* data) {
   private_data_t* private_data = (private_data_t*) data;
