@@ -19,6 +19,16 @@ Además existen condiciones especiales para el número 1 y  los números negativ
 ¿Por qué decimos que Concurrente?
 Porque se calculan las factorizaciones primas  utilizando hilos que se reparten el trabajo, y por lo tanto, debe tener un incremento en el desempeño en la ejecución del código, de forma corroborable.
 
+## Aplicación de la concurrencia
+
+### Numero de hilos por entrada estandar
+El usuario tiene la posibilidad de decidir la cantidad de hilos con la que desea ejecutar el programa, en este caso, debe pasar este numero por la entrada estandar a la hora de correr el programa. Por ejemplo, pasarle 3 como la cantidad de hilos:
+
+`bin/primefact_pthread 3`
+
+### Default
+En el caso de que no se le pase ningun numero en la entrada estandar, el programa se ejecutara con un numero de hilos igual al numero de nucleos de la CPU.
+
 ## Ejecución del programa
 
 ### Construcción
