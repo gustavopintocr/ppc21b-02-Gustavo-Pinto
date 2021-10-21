@@ -43,7 +43,9 @@ void factorize(array_int_t* array, int64_t position) {
 }
 
 /**
- @brief  Método encargado de eliminar subarreglos.
+ @brief  Metodo encargado de hacer que los hilos factoricen todos los numeros
+ sin que haya condiciones de carrera o que uno o màs hilos accedan a la misma
+ posiciòn del array
  @param  data Data.
 */
 void* routine_factorize(void* data) {
