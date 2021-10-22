@@ -1,0 +1,54 @@
+procedure main(argc, argv[])
+
+  if argc > 1 do
+    shared thread_count := integer(argv[1])
+  else do
+    shared thread_count := SYSTEM(CPUs)
+  end if
+
+  array_int array
+  start_array(&array)
+  int number
+  shared counter = 0
+
+  while (number = stdin.value) == 1 do
+    insert_value(&array,numero)
+    counter++
+  end while
+
+  shared array_position := 0
+  shared can_access_next_position := create_mutex()
+  create_threads(thread_count)
+
+end procedure
+
+
+procedure create_threads(thread_count)
+
+  threads[thread_count]
+
+  for thread_number := 0 to thread_count do
+    threads[thread_actual] := create_thread(routine_factorizer, private_data)
+  end for
+
+  print(array)
+
+end procedure 
+
+procedure routine_factorize(thread_number,array)
+  
+  while true do
+  
+    if posicion_array > counter do
+      lock(can_access_next_position)
+      my_position = array_position
+      array_position++
+      unlock(can_access_next_position)
+      break
+    end
+
+    factorize(array,my_position)
+
+  end while
+
+end procedure
