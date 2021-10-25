@@ -30,11 +30,22 @@ Arenal brindado por la E.C.C.I, por medio de la herramienta perf stat, que brind
 
 ## Comparación de optimizaciones
 
-![Comparacion1_Optimizaciones.jpg] (https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion1_Optimizaciones.jpg)
+![Comparacion1_Optimizaciones](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion1_Optimizaciones.jpg)
 
 ## Comparación grados de concurrencia
 
-![Comparacion2_Concurrencia.jpg] (https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion2_Concurrencia.jpg)
+![Comparacion2_Concurrencia](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion2_Concurrencia.jpg)
+
+## KCachegrind
+
+![KCachegrind](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/KCachegrind.jpg)
+
+KCachegrind permite encontrar rápida y visualmente las líneas de código fuente que consumen más instrucciones de procesador, y por tanto, 
+las líneas críticas que convienen optimizar, incluso en una base de código extensa. En la esquina superior izquierda de la Visualización 
+de KCachegrind de las líneas que consumen más procesamiento muestra un gráfico de consumo por cada hilo de ejecución. En la esquina inferior 
+izquierda muestra las subrutinas que han ejecutado más instrucciones de procesador en porcentajes, isPrime() está seleccionada. En la esquina 
+superior derecha se muestra las líneas de código fuente de isPrime() que consumieron más instrucciones. Se puede ver la invocación a qSqrt() y 
+el operador módulo (%) son los que causan casi la totalidad del procesamiento. Estos son los puntos críticos a optimizar para este programa.
 
 ## Conclusión
 Analizando los gráficos se pueden llegar a varias conclusiones. La primera es que el mapeo dinámico tiene ventaja sobre el mapeo 
