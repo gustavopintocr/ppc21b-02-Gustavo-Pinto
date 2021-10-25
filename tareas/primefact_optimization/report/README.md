@@ -43,9 +43,9 @@ Arenal brindado por la E.C.C.I, por medio de la herramienta perf stat, que brind
 KCachegrind permite encontrar rápida y visualmente las líneas de código fuente que consumen más instrucciones de procesador, y por tanto, 
 las líneas críticas que convienen optimizar, incluso en una base de código extensa. En la esquina superior izquierda de la Visualización 
 de KCachegrind de las líneas que consumen más procesamiento muestra un gráfico de consumo por cada hilo de ejecución. En la esquina inferior 
-izquierda muestra las subrutinas que han ejecutado más instrucciones de procesador en porcentajes, isPrime() está seleccionada. En la esquina 
-superior derecha se muestra las líneas de código fuente de isPrime() que consumieron más instrucciones. Se puede ver la invocación a qSqrt() y 
-el operador módulo (%) son los que causan casi la totalidad del procesamiento. Estos son los puntos críticos a optimizar para este programa.
+izquierda muestra las subrutinas que han ejecutado más instrucciones de procesador en porcentajes, factorize() está seleccionada. En la esquina 
+superior derecha se muestra las líneas de código fuente de factorize() que consumieron más instrucciones. Se puede ver que el operador módulo (%)
+es el que causa casi la totalidad del procesamiento. Estos son los puntos críticos a optimizar para este programa.
 
 ## Conclusión
 Analizando los gráficos se pueden llegar a varias conclusiones. La primera es que el mapeo dinámico tiene ventaja sobre el mapeo 
