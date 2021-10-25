@@ -1,8 +1,8 @@
-#Reporte
+# Reporte
 
-##Desarrollo
+## Desarrollo
 
-###Para desarrollar las optimizaciones se siguió el siguiente método recomendado:
+### Para desarrollar las optimizaciones se siguió el siguiente método recomendado:
 
 - Medir el rendimiento del código antes de realizar las modificaciones:
 Se realizo una medición del tiempo en segundos que tardo el código en ejecutarse en una 
@@ -28,14 +28,15 @@ Arenal brindado por la E.C.C.I, por medio de la herramienta perf stat, que brind
  del programa en un CPU de 8 núcleos, del cual se determinó el speedup y la eficiencia, los cuales determinaron una mejora 
  considerable conforme a la versión anterior.
 
-##Comparación de optimizaciones
+## Comparación de optimizaciones
 
+![Comparacion1_Optimizaciones.jpg] (https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion1_Optimizaciones.jpg)
 
-##Comparación grados de concurrencia
+## Comparación grados de concurrencia
 
+![Comparacion2_Concurrencia.jpg] (https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/Comparacion2_Concurrencia.jpg)
 
-
-##Conclusión
+## Conclusión
 Analizando los gráficos se pueden llegar a varias conclusiones. La primera es que el mapeo dinámico tiene ventaja sobre el mapeo 
 por bloques, aunque sea marginal. Podemos decir que una implementación de mapeo dinámico asegura buenos resultados y es acertado 
 tenerla como primera opción. Otra conclusión a la que se puede llegar gracias a las pruebas realizadas, es que los mejores resultados 
