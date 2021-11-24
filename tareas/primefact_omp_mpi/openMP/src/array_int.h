@@ -24,8 +24,10 @@ typedef struct {
   sub_array_t* elements;
 } array_int_t;
 
-int add_element(array_int_t* array, int64_t number, bool isLetter);
+int add_element(array_int_t* array, int64_t number);
+int add_letter_element(array_int_t* array, bool invalid);
 int add_subarray(sub_array_t* a, int64_t base, int64_t expo);
+array_int_t create_array();
 void destroy_array(array_int_t* array);
 void destroy_subarray(array_int_t* array);
 int increase_capacity(array_int_t* array);
@@ -34,4 +36,4 @@ void start_array(array_int_t* array);
 void start_subarray(sub_array_t* array);
 void print(array_int_t* array);
 
-#endif  // ARRAY_INT_Hmentos[i].numero);
+#endif  // ARRAY_INT_H;

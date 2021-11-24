@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <math.h>
+#include <errno.h>
 #include "array_int.h"
 #include "factorizer.h"
 
@@ -20,24 +21,38 @@
    0 si lo logró.
    1 si falló.
 */
-int add_element(array_int_t* array, int64_t number, bool isLetter) {
+int add_element(array_int_t* array, int64_t number) {
   assert(array);
   if (array->counter == array->capacity) {
     if (increase_capacity(array) != EXIT_SUCCESS) {
       return EXIT_FAILURE;
     }
   }
-  if (!isLetter) {
-    start_subarray(&(array->elements[array->counter++]));
-    array->elements[array->counter-1].number = number;
-    array->elements[array->counter-1].letter = false;
-    return EXIT_SUCCESS;
-  } else {
-    start_subarray(&(array->elements[array->counter++]));
-    array->elements[array->counter-1].number = 0;
-    array->elements[array->counter-1].letter = true;
-    return EXIT_SUCCESS;
+  start_subarray(&(array->elements[array->counter++]));
+  array->elements[array->counter-1].number = number;
+  array->elements[array->counter-1].letter = false;
+  return EXIT_SUCCESS;
+}
+
+/**
+ @brief Insertar para los valores invalidos por letras o simbolos no numericos.
+ @param array Arreglo de elementos tipo int.
+ @param invalid Bool que determina si el elemento es un entero.
+ @return Un código de error:
+   0 si lo logró.
+   1 si falló.
+ */
+int add_letter_element(array_int_t* array, bool invalid) {
+  assert(array);
+  if (array->counter == array->capacity) {
+    if (increase_capacity(array) != EXIT_SUCCESS) {
+      return EXIT_FAILURE;
+    }
   }
+  start_subarray(&(array->elements[array->counter++]));
+  array->elements[array->counter-1].number = 0;
+  array->elements[array->counter-1].letter = invalid;
+  return EXIT_SUCCESS;
 }
 
 /**
@@ -59,6 +74,29 @@ int add_subarray(sub_array_t* array, int64_t base, int64_t exponent) {
   array->bases[array->counter++] = base;
   array->exponents[array->counter-1] = exponent;
   return EXIT_SUCCESS;
+}
+
+/**
+ * @brief Create a array object
+ * 
+ * @return array_int_t 
+ */
+array_int_t create_array() {
+  array_int_t arrayTemp;
+  start_array(&arrayTemp);
+  int64_t number = 0;
+  char* manage = malloc(100);
+  while ( fgets(manage, 100, stdin) ) {
+    if (sscanf(manage, "%"SCNd64, &number) && !errno) {
+      add_element(&arrayTemp, number);
+      errno = 0;
+    } else {
+      add_letter_element(&arrayTemp, true);
+      errno = 0;
+    }
+  }
+  free(manage);
+  return arrayTemp;
 }
 
 /**
