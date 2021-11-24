@@ -4,6 +4,28 @@
 
 ### Para desarrollar las optimizaciones se siguió el siguiente método recomendado:
 
+Optimizacion 1 (Dynamic)
+
+- Analizar el código para detectar las regiones críticas a optimizar (profiling):
+Mediante la herramienta callgrind de valgrind se pudo detectar la región del código del programa 
+basada en serializacion, que debía ser optimizada por su alto consumo de recursos, el cual se encontraba en el metodo
+de factorizar.
+
+- Hacer las modificaciones que se cree incrementarán el rendimiento en las regiones críticas:
+Gracias a la detección de la región anterior, se pudo implementar una mejora de rendimiento al ciclo, mediante 
+la implemetacion de parelelizacion de datos, creando hilos de concurrencia para ejecutar el metodo.
+
+- Asegurarse de que las modificaciones sean correctas:
+Mediante la ejecución de los casos de pruebas /tests se determinó el correcto funcionamiento del código.
+
+- Medir el rendimiento del código después de realizar las modificaciones y comparar para determinar si hubo una ganancia:
+Se hizo la medición del rendimiento a través del tiempo de la ejecución del programa, la cual se hizo en el clúster 
+Arenal brindado por la E.C.C.I, por medio de la herramienta perf stat, que brindo el tiempo transcurrido en la ejecución
+ del programa en un CPU de 8 núcleos, del cual se determinó el speedup y la eficiencia, los cuales determinaron una mejora 
+ considerable conforme a la versión anterior.
+
+Optimizacion 2 (Block)
+
 - Medir el rendimiento del código antes de realizar las modificaciones:
 Se realizo una medición del tiempo en segundos que tardo el código en ejecutarse en una 
 CPU de 8 núcleos, en el clúster Arenal brindado por la E.C.C.I. Y a partir de ello, se determino 
