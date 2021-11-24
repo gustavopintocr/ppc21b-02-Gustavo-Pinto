@@ -28,7 +28,6 @@ int create_threads(array_int_t* array, int64_t thread_count) {
   #pragma omp parallel for num_threads(thread_count) \
   schedule(dynamic) shared(array, capacity)
     for (int index = 0; index < capacity; index++) {
-      #pragma omp critical
       factorize(array, index);
     }
   return error;
