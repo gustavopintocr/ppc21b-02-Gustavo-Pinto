@@ -16,8 +16,10 @@
 
 
 /**
- @brief  Método encargado de crear los hilos de concurrencia.
- @param  shared_data Pointer a typedef struct.
+ @brief  Método encargado de crear los hilos de concurrencia mediante el programa OpenMP. Donde se podra escoger la distribucion 
+ a utilizar (static, dynamic, guided)
+ @param  array Arreglo con los valores a factorizar.
+ @param  thread_count
  @return Un código de error:
    0 si lo logró.
    1 si falló.

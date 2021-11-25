@@ -1,6 +1,35 @@
 # Reporte
 
-## Desarrollo
+## Concurrencia Declarativa(OpenMP)
+
+### Metricas
+
+- Speedup: La paralización de código serial es una forma de optimización. Una comparación de incremento de velocidad común es el 
+tiempo de ejecución serial (antes) respecto al tiempo de ejecución posterior a la paralización (después). En este caso, el speedup 
+indica la cantidad de veces que la computación paralela es más rápida que la computación serial. Un valor mayor a 1 indica un incremento 
+de velocidad, 1 que la velocidad se mantiene igual, y un valor menor a 1 un decremento en la velocidad.
+
+- Efficiency: La eficiencia es un valor entre 0 y 1, donde 0 indica un sistema no eficiente, y 1.0 es la eficiencia ideal donde todo el 
+trabajo es realizado en paralelo por los trabajadores, en forma equitativa y sin necesidad de control de concurrencia. Sin embargo, es 
+poco probable que un programa logre una eficiencia de 1.0. Normalmente los programas tienen porciones de código secuencial (por ejemplo, 
+antes de crear los hilos de ejecución, o al usar control de concurrencia como exclusión mutua) y porciones de código paralelo.
+
+### Comparación de distribuciones
+
+![Comparacion1_Distribuciones](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_omp_mpi/report/img/Distribuciones%20OpenMP.jpg)
+
+### Comparación grados de concurrencia
+
+![Comparacion2_Concurrencia](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_omp_mpi/report/img/Grado%20de%20Concurrencia.jpg)
+
+> > Las mediciones anteriores se pueden encontrar en el siguiente documento: https://docs.google.com/spreadsheets/d/1rOwvnUTUmd1MRYMsCuK71K4DgHf_mn3z1fCqpEzuu7g/edit?usp=sharing
+
+### Conclusiones OpenMP
+
+Para la implementación de la herramienta Open MP de concurrencia declarativa se trabajó sobre la Optimización 2(dynamic) de la tarea03. En esta ocasión el uso de pthreads fue reemplazado por el estándar Open MP que permitió introducir concurrencia y mapeos de datos de forma declarativa. Adicionalmente permitió simplificar el programa y reducir las líneas de código en comparación con las versiones anteriores. Para esta implementación se probaron diferentes tipos de mapeo, dinamico, estatico y guiado. De las graficas anteriores se puede concluir que al utilizar concurrencia declarativa se logro una mejora en el speedup con respecto a pthreads, sin embargo, el mayor speedup se alcanzo en la implentacion del mapeo dinamico, como tambien lo pudimos observar en la tarea03 de optimizaciones. Ademas, es que los mejores resultados de Speedup de concurrencia, se obtienen cuando el número de hilos creados es igual al número de núcleos en el sistema.
+
+
+## Optimizaciones
 
 ### Para desarrollar las optimizaciones se siguió el siguiente método recomendado:
 
@@ -50,7 +79,7 @@ Arenal brindado por la E.C.C.I, por medio de la herramienta perf stat, que brind
  del programa en un CPU de 8 núcleos, del cual se determinó el speedup y la eficiencia, los cuales determinaron una mejora 
  considerable conforme a la versión anterior.
 
-## Metricas
+### Metricas
 
 - Speedup: La paralización de código serial es una forma de optimización. Una comparación de incremento de velocidad común es el 
 tiempo de ejecución serial (antes) respecto al tiempo de ejecución posterior a la paralización (después). En este caso, el speedup 
@@ -72,7 +101,7 @@ antes de crear los hilos de ejecución, o al usar control de concurrencia como e
 
 > > Las mediciones anteriores se pueden encontrar en el siguiente documento: https://drive.google.com/file/d/1kdBO4aznE7wedPW6qs3UMfz54jczFwDt/view?usp=sharing
 
-## KCachegrind
+### KCachegrind
 
 ![KCachegrind](https://github.com/gustavopintocr/ppc21b-02-Gustavo-Pinto/blob/main/tareas/primefact_optimization/report/KCachegrind.jpg)
 
@@ -83,10 +112,9 @@ izquierda muestra las subrutinas que han ejecutado más instrucciones de procesa
 superior derecha se muestra las líneas de código fuente de factorize() que consumieron más instrucciones. Se puede ver que el operador módulo (%)
 es el que causa casi la totalidad del procesamiento. Estos son los puntos críticos a optimizar para este programa.
 
-## Conclusión
+### Conclusiones Optimizaciones
 Analizando los gráficos se pueden llegar a varias conclusiones. La primera es que el mapeo dinámico tiene ventaja sobre el mapeo 
 por bloques, aunque sea marginal. Podemos decir que una implementación de mapeo dinámico asegura buenos resultados y es acertado 
 tenerla como primera opción. Otra conclusión a la que se puede llegar gracias a las pruebas realizadas, es que los mejores resultados 
 de Speedup, se obtienen cuando el número de hilos creados es igual al número de núcleos en el sistema.Por otro lado, se puede observar que, 
 a mayor número de hilos, menor eficiencia.
-
