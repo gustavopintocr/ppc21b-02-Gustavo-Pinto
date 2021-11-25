@@ -25,13 +25,14 @@ end procedure
 
 procedure create_threads(thread_count)
 
-  threads[thread_count]
-
-  for thread_number := 0 to thread_count do
-    threads[thread_actual] := create_thread(routine_factorizer, private_data)
-  end for
-
-  print(array)
+  capacity = array->counter;
+  
+  #pragma omp parallel for num_threads(thread_count) \
+  schedule(dynamic) shared(array, capacity)
+    for (int index = 0; index < capacity; index++) {
+      factorize(array, index);
+    }
+    end for
 
 end procedure 
 
