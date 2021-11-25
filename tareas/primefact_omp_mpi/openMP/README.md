@@ -29,6 +29,14 @@ El usuario tiene la posibilidad de decidir la cantidad de hilos con la que desea
 ### Default
 En el caso de que no se le pase ningun numero en la entrada estandar, el programa se ejecutara con un numero de hilos igual al numero de nucleos de la CPU.
 
+## Open MP
+
+[OpenMP](https://es.wikipedia.org/wiki/OpenMP) se basa en el modelo fork-join, paradigma que proviene de los sistemas Unix, donde una tarea muy pesada se divide en K hilos (fork) con menor peso, para luego "recolectar" sus resultados al final y unirlos en un solo resultado (join).
+
+Cuando se incluye una directiva de compilador OpenMP esto implica que se incluye una sincronización obligatoria en todo el bloque. Es decir, el bloque de código se marcará como paralelo y se lanzarán hilos según las características que nos dé la directiva, y al final de ella habrá una barrera para la sincronización de los diferentes hilos (salvo que implícitamente se indique lo contrario con la directiva nowait). Este tipo de ejecución se denomina fork-join.
+
+Gracias a esta herramienta se logró un mejor desempeño en la implementacion de la concurrencia por hilos dentro del programa, además le permite al usuario poder cambiar entre las distruciones que desea (dynamic, static, guided= de una forma más sencilla.
+
 ## Ejecución del programa
 
 ### Construcción
