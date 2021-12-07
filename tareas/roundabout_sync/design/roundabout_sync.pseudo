@@ -1,0 +1,112 @@
+// Gustavo Pinto Umaña C06009
+
+procedure main(argc, argv[]):
+  // Analyze arguments
+  shared drive_min_delay := 0
+  shared drive_max_delay := 0
+  shared verbose := false
+  if argc >= 3 then
+    drive_min_delay := argv[1]
+    drive_max_delay := argv[2]
+  end if
+  if argc >= 4 then
+    verbose := argv[3] = "-v"
+  end if
+  // Vehicle capacity in each segment of the roundabout
+  shared constant segment_capacity = read_integer()
+  shared semaphores[4] = create_semaphore(segment_capacity)
+  shared routes = string[vehicle_count]
+  // Create vehicles
+  vehicle = 0
+  while (can_read) do
+    char enter_from = read_char()
+    char exit_to = read_char()
+    create_thread(vehicle, enter_from, exit_to, shared)
+    vehicle++
+  end while
+  for (int i = 0; i < vehicle_count; i++)
+    join_thread(i)
+  end for
+  roundabout()
+end procedure
+
+// Vehicle subroutine
+procedure vehicle(enter_from, exit_to):
+  // ...
+  drive()
+  // ...
+end procedure
+
+// Drive subroutine
+procedure drive()
+  declare const range = drive_max_delay - drive_min_delay
+  declare duration := drive_min_delay
+  if range > 0 then
+    duration += rand() % range
+  end if
+  sleep(duration)
+end procedure
+
+// Roundabout subroutine
+procedure roundabout(routes[], vehicles_count)
+  for (int i = 0; i < vehicles_count; i++)
+    print i ": " routes[i]
+  end for
+end procedure
+
+// Create threads subroutine
+procedure threads(enter_from, exit_to, verbose)
+  char cardinal = enter_from
+    vector<char> route
+    while (cardinal != exit_to)
+        switch(cardinal)
+
+            case 'N':
+                wait(semaphores[0]) 
+                if (verbose)do 
+                  print vehicle N
+                end if
+                drive()
+                route.back_to('N')
+                cardinal = 'O'
+                signal(semaphores[0]) 
+                break
+
+            case 'O':
+                wait(semaphores[1])
+                if (verbose) do
+                  print vehicle O
+                end if
+                drive()
+                route.back_to('O')
+                cardinal = 'S'
+                signal(semaphores[0])
+                break
+                
+            case 'S':
+                wait(semaphores[2])
+                if (verbose) do 
+                  print vehicle S
+                end if
+                drive()
+                route.back_to('S')
+                cardinal = 'E'
+                signal(semaphores[0])
+                break
+
+            case 'E':
+                wait(semaphores[3])
+                if (verbose) do
+                  print vehicle E
+                end if
+                drive()
+                route.back_to('E')
+                cardinal = 'N'
+                signal(semaphores[0])
+                break
+
+        end switch
+    end while
+    string route_str = str(route.begin(), route.end())
+    routes[vehicle] = route_str
+end procedure

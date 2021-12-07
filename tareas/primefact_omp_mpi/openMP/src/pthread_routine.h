@@ -25,7 +25,7 @@ typedef struct private {
   shared_data_t* shared_data;
 } private_data_t;
 
-int create_threads(array_int_t* array,int64_t thread_count);
+int create_threads(array_int_t* array, int64_t thread_count);
 int start_threads(array_int_t* array, int64_t thread_count);
 
 #endif
